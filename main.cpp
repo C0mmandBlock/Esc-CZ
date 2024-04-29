@@ -5,6 +5,10 @@ int main() {
   SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
   int running = 1;
   while (running) {
+    if (SDL_QuitRequested()) {
+      running = 0;
+      break;
+    }
   }
   return 0;
 }
