@@ -27,9 +27,6 @@ map_height = 1
 offsetX = 320
 offsetY = 20
 
-def fpsText(fps):
-    pygame.tex
-
 def iso_to_screen(pos):
     return ((pos[0]-pos[1]) * (tile_width/2) + offsetX, (pos[0]+pos[1]) * (tile_height/2) + offsetY)
 
