@@ -22,7 +22,7 @@ mapData = {
 
 tile_width, tile_height = 64*3, 32*3
 
-map_width, map_height = 3, 3
+map_width, map_height = 1, 1
 
 offsetX, offsetY = 320, 20
 
@@ -34,19 +34,19 @@ def draw_tiles():
         for x in range(map_width):
             iso_pos = (x, y)
             screen_pos = iso_to_screen(iso_pos)
-            a,b,c,d,e,f,g = (screen_pos[0]+tile_width/2,screen_pos[1]+tile_height*2),(screen_pos[0]+tile_width/2,screen_pos[1]+tile_height),(screen_pos[0]+tile_width,screen_pos[1]+tile_height/2),(screen_pos[0]+tile_width,screen_pos[1]+tile_height*1.5),(screen_pos[0],screen_pos[1]+tile_height/2),(screen_pos[0],screen_pos[1]+tile_height*1.5),(screen_pos[0]+tile_width/2,screen_pos[1])
-            pg.draw.polygon(screen, mapData["color1"][(x,y)], [e, g, c, b])
-            pg.draw.polygon(screen, mapData["color2"][(x,y)], [b, a, f, e])
-            pg.draw.polygon(screen, mapData["color3"][(x,y)], [b, a, d, c])
-            pg.draw.line(screen, BLACK, a, b, 2)
-            pg.draw.line(screen, BLACK, a, f, 2)
-            pg.draw.line(screen, BLACK, a, d, 2)
-            pg.draw.line(screen, BLACK, b, c, 2)
-            pg.draw.line(screen, BLACK, e, g, 2)
-            pg.draw.line(screen, BLACK, g, c, 2)
-            pg.draw.line(screen, BLACK, e, f, 2)
-            pg.draw.line(screen, BLACK, e, b, 2)
-            pg.draw.line(screen, BLACK, d, c, 2)
+            bottom,center,top_right,bottom_right,top_left,bottom_left,top = (screen_pos[0]+tile_width/2,screen_pos[1]+tile_height*2),(screen_pos[0]+tile_width/2,screen_pos[1]+tile_height),(screen_pos[0]+tile_width,screen_pos[1]+tile_height/2),(screen_pos[0]+tile_width,screen_pos[1]+tile_height*1.5),(screen_pos[0],screen_pos[1]+tile_height/2),(screen_pos[0],screen_pos[1]+tile_height*1.5),(screen_pos[0]+tile_width/2,screen_pos[1])
+            pg.draw.polygon(screen, mapData["color1"][(x,y)], [top_left, top, top_right, center])
+            pg.draw.polygon(screen, mapData["color2"][(x,y)], [center, bottom, bottom_left, top_left])
+            pg.draw.polygon(screen, mapData["color3"][(x,y)], [center, bottom, bottom_right, top_right])
+            pg.draw.line(screen, BLACK, bottom, center, 2)
+            pg.draw.line(screen, BLACK, bottom, bottom_left, 2)
+            pg.draw.line(screen, BLACK, bottom, bottom_right, 2)
+            pg.draw.line(screen, BLACK, center, top_right, 2)
+            pg.draw.line(screen, BLACK, top_left, top, 2)
+            pg.draw.line(screen, BLACK, top, top_right, 2)
+            pg.draw.line(screen, BLACK, top_left, bottom_left, 2)
+            pg.draw.line(screen, BLACK, top_left, center, 2)
+            pg.draw.line(screen, BLACK, bottom_right, top_right, 2)
 
 def main():
     clock = pg.time.Clock()
@@ -65,5 +65,4 @@ def main():
             i = 0
         i += 1
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__": main()
